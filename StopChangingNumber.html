@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Stop Changing Number</title>
+
+<style>
+body{
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+#Number{
+    font-size: 100px;
+}
+
+#Number:hover{
+    cursor: pointer;
+}
+
+</style>
+
+</head>
+<body>
+<div>Click on the Number</div>
+<div id="Number" onclick="stopStart()">1</div>
+
+<script>
+var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var timer = null;
+
+function change(){
+    var random = Math.floor(Math.random() * numbers.length);
+    document.getElementById("Number").textContent = numbers[random];
+}
+
+function stopStart(){
+    if(timer === null){
+        timer = setInterval(change, 100);
+    }else{
+        var currentNumber = Number(document.getElementById("Number").textContent);
+        if(currentNumber % 2 !== 0){
+            clearInterval(timer);
+            timer = null;
+        }
+    }
+}
+
+window.onload = function(){
+    timer = setInterval(change, 100);
+};
+
+</script>
+
+</body>
+
+</html>
